@@ -3,7 +3,7 @@
 You need to implement a simple game: tic-tac-toe.
 WYou must show the cleanliness of the code and how to work with components and how they interact with each other.
 
-- [DEMO LINK]()
+- [DEMO LINK](https://stasianich.github.io/ITeam/)
 
 ## Description
 

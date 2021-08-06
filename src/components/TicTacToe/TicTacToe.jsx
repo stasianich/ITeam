@@ -87,9 +87,9 @@ export class TicTacToe extends React.PureComponent {
           return (
             <button
               type="button"
-              className="tic-tac-toe__cell"
               name={i}
               onClick={this.clickCell}
+              className="tic-tac-toe__cell"
               key={uuidv4()}
             >
               {field[i]}
