@@ -1,16 +1,18 @@
 {
-  "name": "ITeam test",
+  "name": "iteam-test",
   "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "keywords": [],
   "dependencies": {
     "bulma": "^0.8.0",
+    "classnames": "^2.3.1",
     "node-sass": "^4.12.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@mate-academy/eslint-config-react": "*",

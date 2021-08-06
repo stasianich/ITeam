@@ -1,0 +1,13 @@
+.score {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  &__title,
+  &__first-player,
+  &__second-player {
+    font-size: 30px;
+    font-weight: 400;
+    color: rgb(196, 196, 196);
+  }
+}
