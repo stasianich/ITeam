@@ -4,7 +4,7 @@ import { ModalWindow } from './components/ModalWindow';
 import { ScoreBoard } from './components/ScoreBoard/ScoreBoard';
 import { TicTacToe } from './components/TicTacToe';
 
-export class App extends React.PureComponent {
+class App extends React.PureComponent {
   state = {
     firstPlayerName: '',
     secondPlayerName: '',
@@ -69,3 +69,5 @@ export class App extends React.PureComponent {
     );
   }
 }
+
+export default App;
