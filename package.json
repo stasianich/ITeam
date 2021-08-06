@@ -1,11 +1,9 @@
 {
-  "name": "react_movies-list-add-form",
+  "name": "ITeam test",
   "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "keywords": [],
-  "author": "Mate Academy",
-  "license": "GPL-3.0",
   "dependencies": {
     "bulma": "^0.8.0",
     "node-sass": "^4.12.0",
