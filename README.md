@@ -1,9 +1,9 @@
 # TIC-TAC-TOE TEST TASK (iteam)
 
 You need to implement a simple game: tic-tac-toe.
-WYou must show the cleanliness of the code and how to work with components and how they interact with each other.
+You must show the cleanliness of the code and how to work with components and how they interact with each other.
 
-- [DEMO LINK]()
+- [DEMO LINK](https://stasianich.github.io/ITeam/)
 
 ## Description
 
@@ -17,7 +17,9 @@ WYou must show the cleanliness of the code and how to work with components and h
 ### Dependencies
 * Node v12.16.3 and higher
 * NPM v6.14.4 and higher
-* ... (describe any prerequisites, libraries, OS version, etc., needed before installing program.)
+* Сlassnames: v2.3.1
+* node-sass: v4.12.0 and higher
+* prop-types: v15.7.2
 
 
 ### Installing
