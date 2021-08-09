@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TicTacToe.scss';
 import { v4 as uuidv4 } from 'uuid';
+import classNames from 'classnames';
 
 export class TicTacToe extends React.PureComponent {
   state = {
     field: Array(9).fill(null),
     count: 0,
+    winningCombination: null,
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -55,9 +57,12 @@ export class TicTacToe extends React.PureComponent {
       if (field[line[0]] === player
         && field[line[1]] === player
         && field[line[2]] === player) {
-        this.props.updateScore(player);
+        this.setState({ winningCombination: i + 1 });
 
-        this.clearBoard();
+        setTimeout(() => {
+          this.props.updateScore(player);
+          this.clearBoard();
+        }, 200);
 
         return;
       }
@@ -73,12 +78,14 @@ export class TicTacToe extends React.PureComponent {
     this.setState({
       field: Array(9).fill(null),
       count: 0,
+      winningCombination: null,
     });
   }
 
   render() {
     const {
       field,
+      winningCombination,
     } = this.state;
 
     return (
@@ -96,6 +103,27 @@ export class TicTacToe extends React.PureComponent {
             </button>
           );
         })}
+        {
+          winningCombination
+          && (
+          <div className={
+            classNames(
+              'winning-line',
+              {
+                firstCombination: winningCombination === 1,
+                secondCombination: winningCombination === 2,
+                thirdCombination: winningCombination === 3,
+                fourthCombination: winningCombination === 4,
+                fifthCombination: winningCombination === 5,
+                sixthCombination: winningCombination === 6,
+                seventhCombination: winningCombination === 7,
+                eighthCombination: winningCombination === 8,
+              },
+            )
+          }
+          />
+          )
+        }
       </div>
     );
   }

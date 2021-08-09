@@ -1,11 +1,12 @@
 .tic-tac-toe {
-  width: 320px;
+  width: 310px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   background-color: rgb(168, 85, 193);
+  position: relative;
 
   &__cell {
     width: 100px;
@@ -15,4 +16,48 @@
     color: rgb(196, 196, 196);
     background-color: rgb(68, 66, 94);
   }
+}
+
+.winning-line {
+  position: absolute;
+  height: 10px;
+  width: 290px;
+  background-color: rgb(175, 61, 56);
+  border-radius: 8px;
+}
+
+.firstCombination {
+  top: 45px;
+}
+
+.secondCombination {
+  top: 150px;
+}
+
+.thirdCombination {
+  top: 255px;
+}
+
+.fourthCombination {
+  transform: rotate(90deg);
+  left: -95px;
+}
+
+.fifthCombination {
+  transform: rotate(90deg);
+}
+
+.sixthCombination {
+  transform: rotate(90deg);
+  left: 115px;
+}
+
+.seventhCombination {
+  transform: rotate(45deg);
+  width: 400px;
+}
+
+.eighthCombination {
+  transform: rotate(-45deg);
+  width: 400px;
 }
