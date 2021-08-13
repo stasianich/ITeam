@@ -1,16 +1,18 @@
 # TIC-TAC-TOE TEST TASK (iteam)
 
-You need to implement a simple game: tic-tac-toe.
-You must show the cleanliness of the code and how to work with components and how they interact with each other.
+An unbeatable game of Tic Tac Toe.
 
 - [DEMO LINK](https://stasianich.github.io/ITeam/)
 
 ## Description
 
-1) You need to style the game as in the picture.
-2) When entering the page, display a modal window for selecting the player's name.
-3) The game must contain a winners counter.
-4) If there is no move (all cells are filled and there is no winner), display a message that it is a draw. The current steps should be reset to default.
+A very simple tic-tac-toe game.
+* Has modal window for selecting the player's name.
+* Tic tac toe is a 2-player game, X and O;
+* Players alternate turns to choose a move on a 3x3 board.
+* The first player to secure three consecutive positions on a row, column or diagonal wins
+* The game contain a winners counter.
+* Autoreset game after win or draw
 
 ## Local development
 

@@ -33,11 +33,11 @@ class App extends React.PureComponent {
       ? 'firstPlayerWins'
       : 'secondPlayerWins';
 
-    alert(`${playerName} won!`);
-
     this.setState(state => ({
       [playerCount]: state[playerCount] + 1,
     }));
+
+    alert(`${playerName} won!`);
   }
 
   render() {
