@@ -8,6 +8,10 @@
   background-color: rgb(168, 85, 193);
   position: relative;
 
+  @media (max-width: 300px) {
+    width: 220px;
+  }
+
   &__cell {
     width: 100px;
     height: 100px;
@@ -15,6 +19,12 @@
     font-size: 90px;
     color: rgb(196, 196, 196);
     background-color: rgb(68, 66, 94);
+
+    @media (max-width: 300px) {
+      width: 70px;
+      height: 70px;
+      font-size: 60px;
+    }
   }
 }
 
@@ -23,24 +33,45 @@
   height: 10px;
   width: 290px;
   background-color: rgb(175, 61, 56);
-  border-radius: 8px;
+  border-radius: 10px;
+
+  @media (max-width: 300px) {
+    width: 200px;
+    height: 5px;
+  }
 }
 
 .firstCombination {
   top: 45px;
+
+  @media (max-width: 300px) {
+    top: 31px;
+  }
 }
 
 .secondCombination {
   top: 150px;
+
+  @media (max-width: 300px) {
+    top: 106px;
+  }
 }
 
 .thirdCombination {
   top: 255px;
+
+  @media (max-width: 300px) {
+    top: 182px;
+  }
 }
 
 .fourthCombination {
   transform: rotate(90deg);
   left: -95px;
+
+  @media (max-width: 300px) {
+    left: -65px;
+  }
 }
 
 .fifthCombination {
@@ -50,14 +81,26 @@
 .sixthCombination {
   transform: rotate(90deg);
   left: 115px;
+
+  @media (max-width: 300px) {
+    left: 85px;
+  }
 }
 
 .seventhCombination {
   transform: rotate(45deg);
   width: 400px;
+
+  @media (max-width: 300px) {
+    width: 290px;
+  }
 }
 
 .eighthCombination {
   transform: rotate(-45deg);
   width: 400px;
+
+  @media (max-width: 300px) {
+    width: 290px;
+  }
 }
