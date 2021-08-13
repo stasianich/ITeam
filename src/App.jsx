@@ -6,8 +6,8 @@ import { TicTacToe } from './components/TicTacToe';
 
 class App extends React.PureComponent {
   state = {
-    firstPlayerName: 'p1',
-    secondPlayerName: 'p2',
+    firstPlayerName: '',
+    secondPlayerName: '',
     firstPlayerWins: 0,
     secondPlayerWins: 0,
   };
