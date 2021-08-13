@@ -1,44 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './TicTacToe.scss';
 import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 
-export class TicTacToe extends React.PureComponent {
-  state = {
-    field: Array(9).fill(null),
-    count: 0,
-    winningCombination: null,
-  }
+export const TicTacToe = ({ updateScore }) => {
+  const [field, updateField] = useState(Array(9).fill(null));
+  const [count, setCount] = useState(0);
+  const [winningCombination, setWinningCombination] = useState(null);
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.field !== this.state.field) {
-      setTimeout(() => (this.isWinner()), 0);
-    }
-  }
-
-  clickCell = (event) => {
+  const clickCell = (event) => {
     const { name: position } = event.target;
-    const { field, count } = this.state;
 
     const updatedField = [...field];
 
     if (updatedField[position] === null) {
       updatedField[position] = (count % 2 === 0 ? 'X' : 'O');
 
-      this.setState((state) => {
-        return {
-          count: state.count + 1,
-          field: updatedField,
-        };
-      });
+      setCount(count + 1);
+      updateField(updatedField);
     }
-  }
+  };
 
-  isWinner = () => {
-    const { field, count } = this.state;
-
-    const winningCombinations = [
+  const isWinner = () => {
+    const combinations = [
       [0, 1, 2],
       [3, 4, 5],
       [6, 7, 8],
@@ -49,85 +34,85 @@ export class TicTacToe extends React.PureComponent {
       [2, 4, 6],
     ];
 
-    const player = (count % 2 === 0 ? 'O' : 'X');
+    const currentPlayer = (count % 2 === 0 ? 'O' : 'X');
 
-    for (let i = 0; i < 8; i += 1) {
-      const line = winningCombinations[i];
+    let winnerFound = false;
 
-      if (field[line[0]] === player
-        && field[line[1]] === player
-        && field[line[2]] === player) {
-        this.setState({ winningCombination: i + 1 });
+    combinations.forEach((line, i) => {
+      if (field[line[0]] === currentPlayer
+        && field[line[1]] === currentPlayer
+        && field[line[2]] === currentPlayer) {
+        setWinningCombination(i + 1);
+        winnerFound = true;
 
         setTimeout(() => {
-          this.props.updateScore(player);
-          this.clearBoard();
+          updateScore(currentPlayer);
+          clearBoard();
         }, 200);
-
-        return;
       }
-    }
+    });
 
+    if (!winnerFound) {
+      checkDraw();
+    }
+  };
+
+  const checkDraw = () => {
     if (!field.includes(null)) {
       alert('Draw');
-      this.clearBoard();
+      clearBoard();
     }
-  }
+  };
 
-  clearBoard = () => {
-    this.setState({
-      field: Array(9).fill(null),
-      count: 0,
-      winningCombination: null,
-    });
-  }
+  const clearBoard = () => {
+    updateField(Array(9).fill(null));
+    setCount(0);
+    setWinningCombination(null);
+  };
 
-  render() {
-    const {
-      field,
-      winningCombination,
-    } = this.state;
+  useEffect(() => {
+    isWinner();
+  }, [field]);
 
-    return (
-      <div className="tic-tac-toe">
-        {field.map((cell, i) => {
-          return (
-            <button
-              type="button"
-              name={i}
-              onClick={this.clickCell}
-              className="tic-tac-toe__cell"
-              key={uuidv4()}
-            >
-              {field[i]}
-            </button>
-          );
-        })}
-        {
-          winningCombination
-          && (
-          <div className={
-            classNames(
-              'winning-line',
-              {
-                firstCombination: winningCombination === 1,
-                secondCombination: winningCombination === 2,
-                thirdCombination: winningCombination === 3,
-                fourthCombination: winningCombination === 4,
-                fifthCombination: winningCombination === 5,
-                sixthCombination: winningCombination === 6,
-                seventhCombination: winningCombination === 7,
-                eighthCombination: winningCombination === 8,
-              },
-            )
-          }
-          />
+  return (
+    <div className="tic-tac-toe">
+      {field.map((cell, i) => {
+        return (
+          <button
+            type="button"
+            name={i}
+            onClick={clickCell}
+            className="tic-tac-toe__cell"
+            key={uuidv4()}
+          >
+            {field[i]}
+          </button>
+        );
+      })}
+      {
+        winningCombination
+        && (
+        <div className={
+          classNames(
+            'winning-line',
+            {
+              firstCombination: winningCombination === 1,
+              secondCombination: winningCombination === 2,
+              thirdCombination: winningCombination === 3,
+              fourthCombination: winningCombination === 4,
+              fifthCombination: winningCombination === 5,
+              sixthCombination: winningCombination === 6,
+              seventhCombination: winningCombination === 7,
+              eighthCombination: winningCombination === 8,
+            },
           )
         }
-      </div>
-    );
-  }
-}
+        />
+        )
+      }
+    </div>
+  );
+};
 
 TicTacToe.propTypes = {
   updateScore: PropTypes.func.isRequired,
