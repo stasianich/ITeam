@@ -1,25 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './TicTacToe.scss';
-import { v4 as uuidv4 } from 'uuid';
 import classNames from 'classnames';
 
 export const TicTacToe = ({ updateScore }) => {
-  const [field, updateField] = useState(Array(9).fill(null));
+  const [board, updateBoard] = useState([
+    {
+      id: 0,
+      value: null,
+    },
+    {
+      id: 1,
+      value: null,
+    },
+    {
+      id: 2,
+      value: null,
+    },
+    {
+      id: 3,
+      value: null,
+    },
+    {
+      id: 4,
+      value: null,
+    },
+    {
+      id: 5,
+      value: null,
+    },
+    {
+      id: 6,
+      value: null,
+    },
+    {
+      id: 7,
+      value: null,
+    },
+    {
+      id: 8,
+      value: null,
+    },
+  ]);
   const [count, setCount] = useState(0);
   const [winningCombination, setWinningCombination] = useState(null);
 
   const clickCell = (event) => {
     const { name: position } = event.target;
 
-    const updatedField = [...field];
+    updateBoard(board.map((cell) => {
+      if (cell.id === +position && cell.value === null) {
+        return {
+          id: +position, value: (count % 2 === 0 ? 'X' : 'O'),
+        };
+      }
 
-    if (updatedField[position] === null) {
-      updatedField[position] = (count % 2 === 0 ? 'X' : 'O');
+      return cell;
+    }));
 
-      setCount(count + 1);
-      updateField(updatedField);
-    }
+    setCount(value => value + 1);
   };
 
   const isWinner = () => {
@@ -39,9 +78,9 @@ export const TicTacToe = ({ updateScore }) => {
     let winnerFound = false;
 
     combinations.forEach((line, i) => {
-      if (field[line[0]] === currentPlayer
-        && field[line[1]] === currentPlayer
-        && field[line[2]] === currentPlayer) {
+      if (board[line[0]].value === currentPlayer
+        && board[line[1]].value === currentPlayer
+        && board[line[2]].value === currentPlayer) {
         setWinningCombination(i + 1);
         winnerFound = true;
 
@@ -58,34 +97,72 @@ export const TicTacToe = ({ updateScore }) => {
   };
 
   const checkDraw = () => {
-    if (!field.includes(null)) {
+    if (board.every(cell => cell.value !== null)) {
       alert('Draw');
       clearBoard();
     }
   };
 
   const clearBoard = () => {
-    updateField(Array(9).fill(null));
+    updateBoard([
+      {
+        id: 0,
+        value: null,
+      },
+      {
+        id: 1,
+        value: null,
+      },
+      {
+        id: 2,
+        value: null,
+      },
+      {
+        id: 3,
+        value: null,
+      },
+      {
+        id: 4,
+        value: null,
+      },
+      {
+        id: 5,
+        value: null,
+      },
+      {
+        id: 6,
+        value: null,
+      },
+      {
+        id: 7,
+        value: null,
+      },
+      {
+        id: 8,
+        value: null,
+      },
+    ]);
     setCount(0);
     setWinningCombination(null);
   };
 
   useEffect(() => {
     isWinner();
-  }, [field]);
+    clearInterval();
+  }, [board]);
 
   return (
     <div className="tic-tac-toe">
-      {field.map((cell, i) => {
+      {board.map((cell, i) => {
         return (
           <button
             type="button"
             name={i}
-            onClick={clickCell}
+            onClick={event => clickCell(event)}
             className="tic-tac-toe__cell"
-            key={uuidv4()}
+            key={cell.id}
           >
-            {field[i]}
+            {cell.value}
           </button>
         );
       })}

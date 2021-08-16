@@ -2,28 +2,28 @@ import React from 'react';
 import './ScoreBoard.scss';
 import PropTypes from 'prop-types';
 
-export const ScoreBoard = ({
+export const ScoreBoard = React.memo(({
   firstPlayerName,
   secondPlayerName,
-  firstPlayerWins,
-  secondPlayerWins,
+  firstPlayerWinsCounter,
+  secondPlayerWinsCounter,
 }) => (
   <div className="score">
     <div className="score__title">
       Score:
     </div>
     <div className="score__first-player">
-      {`${firstPlayerName}: ${firstPlayerWins}`}
+      {`${firstPlayerName}: ${firstPlayerWinsCounter}`}
     </div>
     <div className="score__second-player">
-      {`${secondPlayerName}: ${secondPlayerWins}`}
+      {`${secondPlayerName}: ${secondPlayerWinsCounter}`}
     </div>
   </div>
-);
+));
 
 ScoreBoard.propTypes = {
   firstPlayerName: PropTypes.string.isRequired,
-  firstPlayerWins: PropTypes.number.isRequired,
+  firstPlayerWinsCounter: PropTypes.number.isRequired,
   secondPlayerName: PropTypes.string.isRequired,
-  secondPlayerWins: PropTypes.number.isRequired,
+  secondPlayerWinsCounter: PropTypes.number.isRequired,
 };

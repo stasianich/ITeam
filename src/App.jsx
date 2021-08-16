@@ -1,73 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.scss';
 import { ModalWindow } from './components/ModalWindow';
 import { ScoreBoard } from './components/ScoreBoard/ScoreBoard';
 import { TicTacToe } from './components/TicTacToe';
 
-class App extends React.PureComponent {
-  state = {
-    firstPlayerName: '',
-    secondPlayerName: '',
-    firstPlayerWins: 0,
-    secondPlayerWins: 0,
+const App = () => {
+  const [firstPlayerName, setFirstPlayerName] = useState('');
+  const [secondPlayerName, setSecondPlayerName] = useState('');
+  const [firstPlayerWinsCounter, setFirstPlayerWinsCounter] = useState(0);
+  const [secondPlayerWinsCounter, setSecondPlayerWinsCounter] = useState(0);
+
+  const addNames = (firstName, secondName) => {
+    setFirstPlayerName(firstName);
+    setSecondPlayerName(secondName);
   };
 
-  addNames = (firstPlayerName, secondPlayerName) => {
-    this.setState({
-      firstPlayerName,
-      secondPlayerName,
-    });
-  }
-
-  updateScore = (player) => {
-    const {
-      firstPlayerName,
-      secondPlayerName,
-    } = this.state;
-
+  const updateScore = (player) => {
     const playerName = (player === 'X')
       ? firstPlayerName
       : secondPlayerName;
 
-    const playerCount = (player === 'X')
-      ? 'firstPlayerWins'
-      : 'secondPlayerWins';
-
-    this.setState(state => ({
-      [playerCount]: state[playerCount] + 1,
-    }));
+    if (player === 'X') {
+      setFirstPlayerWinsCounter(count => count + 1);
+    } else {
+      setSecondPlayerWinsCounter(count => count + 1);
+    }
 
     alert(`${playerName} won!`);
-  }
+  };
 
-  render() {
-    const {
-      firstPlayerName,
-      secondPlayerName,
-      firstPlayerWins,
-      secondPlayerWins,
-    } = this.state;
+  return (
+    <div className="section">
+      {
+        (!firstPlayerName || !secondPlayerName)
+        && <ModalWindow addNames={addNames} />
+      }
 
-    return (
-      <div className="section">
-        {
-          (!firstPlayerName || !secondPlayerName)
-          && <ModalWindow addNames={this.addNames} />
-        }
+      <TicTacToe
+        updateScore={updateScore}
+      />
 
-        <TicTacToe
-          updateScore={this.updateScore}
-        />
-
-        <ScoreBoard
-          firstPlayerName={firstPlayerName}
-          secondPlayerName={secondPlayerName}
-          firstPlayerWins={firstPlayerWins}
-          secondPlayerWins={secondPlayerWins}
-        />
-      </div>
-    );
-  }
-}
+      <ScoreBoard
+        firstPlayerName={firstPlayerName}
+        secondPlayerName={secondPlayerName}
+        firstPlayerWinsCounter={firstPlayerWinsCounter}
+        secondPlayerWinsCounter={secondPlayerWinsCounter}
+      />
+    </div>
+  );
+};
 
 export default App;

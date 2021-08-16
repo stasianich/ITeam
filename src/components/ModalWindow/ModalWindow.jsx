@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './ModalWindow.scss';
 
-export const ModalWindow = ({ addNames }) => {
+export const ModalWindow = React.memo(({ addNames }) => {
   const [firstPlayerName, setFirstPlayerName] = useState('');
   const [secondPlayerName, setSecondPlayerName] = useState('');
 
@@ -23,6 +23,7 @@ export const ModalWindow = ({ addNames }) => {
           className="enter-nicknames-form"
           onSubmit={(event) => {
             event.preventDefault();
+            addNames(firstPlayerName, secondPlayerName);
           }}
         >
           <div className="enter-nicknames-form__title">
@@ -47,7 +48,6 @@ export const ModalWindow = ({ addNames }) => {
           <button
             type="submit"
             className="enter-nicknames-form__submit-button"
-            onClick={() => addNames(firstPlayerName, secondPlayerName)}
           >
             Add names
           </button>
@@ -55,7 +55,7 @@ export const ModalWindow = ({ addNames }) => {
       </div>
     </div>
   );
-};
+});
 
 ModalWindow.propTypes = {
   addNames: PropTypes.func.isRequired,
