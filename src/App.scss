@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background-color: rgb(84, 95, 125);
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  padding: 60px 40px;
+  margin: 0 auto;
+
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 40px;
+    padding: 0;
+    padding-top: 30px;
+  }
+}

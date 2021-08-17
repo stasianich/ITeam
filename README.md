@@ -17,6 +17,7 @@ A very simple tic-tac-toe game.
 ## Local development
 
 ### Dependencies
+* React v16.13.1 and higher
 * Node v12.16.3 and higher
 * NPM v6.14.4 and higher
 * Сlassnames: v2.3.1
